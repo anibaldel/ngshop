@@ -1,0 +1,86 @@
+<div class="checkout-page">
+    <div>
+        <p-button label="Volver al Carrito" 
+                icon="pi pi-arrow-left"
+                (onClick)="backToCart()"></p-button>
+    </div>
+    <div class="grid checkout-form">
+        <div class="col-8">
+            <form [formGroup]="checkFormGroup">
+              <div class="card">
+                <div class="formgrid grid">
+                  <div class="field col-4">
+                    <label for="name">Nombre</label><br />
+                    <input formControlName="name" id="name" type="text" pInputText class="inputfield w-full" />
+                    <small *ngIf="checkForm.name.invalid && isSubmitted" class="p-error"
+                      >El nombre es requerido</small
+                    >
+                  </div>
+                  <div class="field col-4">
+                      <label for="email">Email</label><br />
+                    <input formControlName="email" id="email" type="text" pInputText class="inputfield w-full"/>
+                    <small *ngIf="checkForm.email.invalid && isSubmitted" class="p-error"
+                      ><span *ngIf="checkForm.email.errors?.required">el correo es requerido</span>
+                      <span *ngIf="checkForm.email.errors?.email">email inválido</span></small
+                    >
+                  </div>
+                  <div class="field col-4">
+                    <label for="color">Telefono</label><br />
+                    <p-inputMask
+                      mask="(591) 999-99999"
+                      formControlName="phone"
+                      placeholder="(591) 999-9999"
+                    ></p-inputMask><br />
+                    <small *ngIf="checkForm.phone.invalid && isSubmitted" class="p-error"
+                      >El telefono es requerido</small
+                    >
+                  </div>
+                </div>
+                
+                <div class="formgrid grid">
+                  <div class="field col-4">
+                    <label for="street">Calle</label>
+                    <input formControlName="street" id="street" type="text" pInputText class="inputfield w-full" />
+                    <small *ngIf="checkForm.phone.invalid && isSubmitted" class="p-error"
+                      >La calle es requerida</small                    >
+                </div>
+                  <div class="field col-4">
+                    <label for="street">Departamento</label>
+                    <input formControlName="apartment" id="apartment" type="text" pInputText class="inputfield w-full" />
+                  </div>
+                  <div class="field col-4">
+                    <label for="street">Codigo postal</label>
+                    <input formControlName="zip" id="zip"  type="text" pInputText class="inputfield w-full" />
+                  </div>
+                  <div class="field col-4">
+                    <label for="street">Ciudad</label>
+                    <input formControlName="city" id="city" type="text" pInputText class="inputfield w-full" />
+                    <small *ngIf="checkForm.phone.invalid && isSubmitted" class="p-error"
+                        >La ciudad es requerida</small>   
+                  </div>
+                  <div class="field col-4">
+                    <label for="country">Pais</label><br />
+                    <p-dropdown
+                      [options]="countries"
+                      formControlName="country"
+                      optionLabel="name"
+                      optionValue="id"
+                      [filter]="true"
+                      filterBy="name"
+                      [showClear]="true"
+                      placeholder="Selecione un pais"
+                    ></p-dropdown>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-4">
+            <orders-order-summary></orders-order-summary>
+            <div class="checkout-button">
+                <p-button label="Ordenar" (onClick)="placeOrder()"></p-button>
+            </div>
+        </div>
+    
+    </div>
+</div>
